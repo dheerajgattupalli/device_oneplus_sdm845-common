@@ -116,6 +116,8 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/dsp:/dsp \
     /vendor/firmware_mnt:/firmware
 
+BUILD_BROKEN_DUP_RULES := true
+
 # Telephony
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
