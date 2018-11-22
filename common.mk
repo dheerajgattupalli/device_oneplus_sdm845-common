@@ -73,7 +73,8 @@ PRODUCT_PACKAGES += \
 # Display
 PRODUCT_PACKAGES += \
     libvulkan \
-    vendor.display.config@1.0
+    vendor.display.config@1.0 \
+    DisplayMode
 
 # Doze
 PRODUCT_PACKAGES += \
