@@ -96,8 +96,9 @@ TARGET_USES_HWC2 := true
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true
 
-# NFC
-TARGET_USES_NQ_NFC := true
+# Lineage Hardware
+JAVA_SOURCE_OVERLAYS := \
+    org.lineageos.hardware|$(COMMON_PATH)/lineagehw|**/*.java
 
 # HIDL
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/framework_manifest.xml
