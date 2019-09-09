@@ -67,7 +67,7 @@ PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
 # Camera
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     Snap
 
 # Common init scripts
@@ -83,7 +83,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.0
 
 # Doze
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     OnePlusDoze
 
 # HotwordEnrollement app permissions
@@ -100,7 +100,7 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_sdm845
 
 # LiveDisplay
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     lineage.livedisplay@2.0-service.oneplus_sdm845
 
 # Media
@@ -133,7 +133,7 @@ PRODUCT_PACKAGES += \
     telephony-ext
 
 # Touch
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     lineage.touch@1.0-service.oneplus_sdm845
 
 # tri-state-key
@@ -142,7 +142,7 @@ PRODUCT_PACKAGES += \
     tri-state-key_daemon
 
 # Trust HAL
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     lineage.trust@1.0-service
 
 PRODUCT_HOST_PACKAGES += \
