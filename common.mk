@@ -14,14 +14,11 @@
 # limitations under the License.
 #
 
-# Get non-open-source specific aspects
-$(call inherit-product, vendor/oneplus/sdm845-common/sdm845-common-vendor.mk)
-
-# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
+# Get non-open-source specific aspects
+$(call inherit-product, vendor/oneplus/sdm845-common/sdm845-common-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -30,6 +27,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Properties
 -include $(LOCAL_PATH)/system_prop.mk
+
+PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # A/B
 AB_OTA_UPDATER := true
@@ -59,21 +62,25 @@ PRODUCT_PACKAGES += \
     libaacwrapper
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
-   frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml
 
 # Boot control
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl.recovery \
+    bootctrl.sdm845.recovery
+
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
 # Camera
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     Snap
 
 # Common init scripts
 PRODUCT_PACKAGES += \
     init.qcom.rc \
-    init.recovery.qcom.rc
+    init.recovery.qcom.rc \
+    ueventd.qcom.rc
 
 # Display
 PRODUCT_PACKAGES += \
@@ -83,7 +90,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.0
 
 # Doze
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     OnePlusDoze
 
 # HotwordEnrollement app permissions
@@ -100,7 +107,7 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_sdm845
 
 # LiveDisplay
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     lineage.livedisplay@2.0-service.oneplus_sdm845
 
 # Media
@@ -125,6 +132,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.qcom:64
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext
@@ -133,32 +144,23 @@ PRODUCT_PACKAGES += \
     telephony-ext
 
 # Touch
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     lineage.touch@1.0-service.oneplus_sdm845
 
 # tri-state-key
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     KeyHandler \
     tri-state-key_daemon
 
 # Trust HAL
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     lineage.trust@1.0-service
-
-PRODUCT_HOST_PACKAGES += \
-    brillo_update_payload
 
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
     update_engine_sideload \
     update_verifier
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.sdm845 \
-    libcutils \
-    libgptutils \
-    libz \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
